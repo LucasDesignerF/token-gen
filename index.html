@@ -37,7 +37,7 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
     <style>
         /* Estilos Gerais */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #36393f;
             color: #ffffff;
             margin: 0;
@@ -47,6 +47,7 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
             align-items: center;
             height: 100vh;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .container {
             background-color: #2f3136;
@@ -58,6 +59,7 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
             grid-template-columns: 250px auto;
             overflow: hidden;
             animation: fadeIn 1s ease-in-out;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         /* Sidebar */
         .sidebar {
@@ -67,6 +69,7 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
             flex-direction: column;
             justify-content: space-between;
             border-right: 1px solid #292b2f;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .sidebar button {
             background-color: #2f3136;
@@ -76,7 +79,7 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
             margin-bottom: 10px;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -84,6 +87,7 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
         }
         .sidebar button:hover {
             background-color: #40444b;
+            transform: scale(1.02);
         }
         .sidebar button.active {
             background-color: #7289da; /* Cor do Discord */
@@ -95,10 +99,12 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
             display: flex;
             flex-direction: column;
             overflow-y: auto;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         h2 {
             color: #7289da; /* Cor do Discord */
             margin-bottom: 20px;
+            font-size: 1.5rem;
         }
         label {
             display: block;
@@ -113,6 +119,7 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
             width: 100%;
             max-width: 200px;
             margin-bottom: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         button.generate-btn {
             background-color: #7289da; /* Cor do Discord */
@@ -121,10 +128,11 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
         button.generate-btn:hover {
             background-color: #677bc4; /* Cor do Discord (hover) */
+            transform: scale(1.02);
         }
         pre {
             background-color: #202225;
@@ -137,11 +145,48 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
             max-height: 150px; /* Altura fixa para 10 linhas */
             margin-top: 10px;
             border: 1px solid #40444b;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .cronometro {
             color: #7289da;
             font-size: 0.9rem;
             margin-top: 10px;
+            transition: color 0.3s ease;
+        }
+        /* Modo Claro */
+        body.light-mode {
+            background-color: #f2f3f5;
+            color: #36393f;
+        }
+        body.light-mode .container {
+            background-color: #ffffff;
+            color: #36393f;
+        }
+        body.light-mode .sidebar {
+            background-color: #f9fafb;
+            color: #36393f;
+        }
+        body.light-mode .sidebar button {
+            background-color: #e5e7eb;
+            color: #36393f;
+        }
+        body.light-mode .sidebar button:hover {
+            background-color: #d1d5db;
+        }
+        body.light-mode .sidebar button.active {
+            background-color: #7289da;
+            color: white;
+        }
+        body.light-mode input, body.light-mode select {
+            background-color: #ffffff;
+            color: #36393f;
+        }
+        body.light-mode pre {
+            background-color: #f9fafb;
+            color: #36393f;
+        }
+        body.light-mode .cronometro {
+            color: #7289da;
         }
         /* Responsividade */
         @media (max-width: 768px) {
@@ -180,10 +225,15 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
                 <button onclick="mostrarVerificador()"><i class="fas fa-check"></i> Verificar Tokens</button>
                 <button onclick="mostrarCreditos()"><i class="fas fa-info-circle"></i> Créditos</button>
             </div>
-            <select id="prefixoSelecionado">
-                <option value="NT">Prefixo NT</option>
-                <option value="MT">Prefixo MT</option>
-            </select>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <select id="prefixoSelecionado">
+                    <option value="NT">Prefixo NT</option>
+                    <option value="MT">Prefixo MT</option>
+                </select>
+                <button onclick="toggleTheme()" title="Alternar Modo Claro/Escuro">
+                    <i id="theme-icon" class="fas fa-sun"></i>
+                </button>
+            </div>
         </div>
         <!-- Main Content -->
         <div class="main">
@@ -191,13 +241,20 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
                 <h2><i class="fas fa-cogs"></i> Gerador de Tokens</h2>
                 <label for="quantidade">Quantidade:</label>
                 <input type="number" id="quantidade" min="1" value="10">
-                <button class="generate-btn" onclick="iniciarGeracaoTokens()"><i class="fas fa-magic"></i> Gerar</button>
+                <button class="generate-btn" onclick="iniciarGeracaoTokens()">
+                    <i class="fas fa-magic"></i> Gerar
+                </button>
                 <div class="cronometro" id="cronometroGerador"></div>
                 <pre id="tokensGerados"></pre>
+                <button class="generate-btn" onclick="exportarTokens('tokensGerados')">
+                    <i class="fas fa-download"></i> Exportar Tokens
+                </button>
             </div>
             <div id="verificador" class="secao" style="display: none;">
                 <h2><i class="fas fa-search"></i> Verificador de Tokens</h2>
-                <button class="generate-btn" onclick="iniciarVerificacaoTokens()"><i class="fas fa-check-double"></i> Verificar</button>
+                <button class="generate-btn" onclick="iniciarVerificacaoTokens()">
+                    <i class="fas fa-check-double"></i> Verificar
+                </button>
                 <div class="cronometro" id="cronometroVerificador"></div>
                 <pre id="resultadoVerificacao"></pre>
             </div>
@@ -211,6 +268,20 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
     <script>
         let cronometroGeradorInterval;
         let cronometroVerificadorInterval;
+
+        // Função para alternar entre modo escuro e claro
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById("theme-icon");
+            body.classList.toggle("light-mode");
+            if (body.classList.contains("light-mode")) {
+                themeIcon.classList.remove("fa-sun");
+                themeIcon.classList.add("fa-moon");
+            } else {
+                themeIcon.classList.remove("fa-moon");
+                themeIcon.classList.add("fa-sun");
+            }
+        }
 
         // Função para iniciar o cronômetro
         function iniciarCronometro(elemento) {
@@ -288,6 +359,22 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
                 document.getElementById("resultadoVerificacao").textContent = resultados.join("\n");
                 pararCronometro(cronometroVerificadorInterval, cronometroElemento);
             }, 1000); // Simula um pequeno delay para visualização do cronômetro
+        }
+
+        // Função para exportar tokens
+        function exportarTokens(idElemento) {
+            const texto = document.getElementById(idElemento).textContent;
+            if (!texto) {
+                alert("Nenhum token para exportar!");
+                return;
+            }
+            const blob = new Blob([texto], { type: "text/plain" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "tokens.txt";
+            a.click();
+            URL.revokeObjectURL(url);
         }
 
         // Funções para alternar entre seções
