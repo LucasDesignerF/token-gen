@@ -66,6 +66,7 @@ body {
     animation: fadeIn 1s ease-in-out;
     transition: background-color 0.3s ease, color 0.3s ease;
     margin-top: 100px; /* Espaço para a navbar */
+    margin-bottom: 50px; /* Espaço para o footer */
 }
 
 /* Sidebar */
@@ -111,6 +112,7 @@ body {
     flex-direction: column;
     overflow-y: auto;
     transition: background-color 0.3s ease, color 0.3s ease;
+    height: calc(100vh - 150px); /* Ajuste para evitar sobreposição com navbar e footer */
 }
 
 h2 {
@@ -160,7 +162,7 @@ pre {
     text-align: left;
     font-size: 0.9rem;
     color: #ffffff;
-    max-height: 150px; /* Altura fixa para 10 linhas */
+    max-height: 90px; /* Altura fixa para 4 linhas */
     margin-top: 10px;
     border: 1px solid #40444b;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -355,6 +357,7 @@ body.light-mode .cronometro {
     .container {
         grid-template-columns: 1fr;
         margin-top: 150px; /* Ajuste para telas menores */
+        margin-bottom: 50px; /* Espaço para o footer */
     }
 
     .sidebar {
