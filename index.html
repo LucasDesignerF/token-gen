@@ -13,7 +13,7 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
 
 ✨ Principais Funcionalidades:
 - Geração rápida de múltiplos tokens.
-- Prefixos personalizáveis: NT ou MT.
+- Prefixos personalizáveis: NT, MT, MTM, MTI, MTA.
 - Verificação instantânea de tokens.
 - Interface elegante e responsiva inspirada no Discord.
 - Totalmente otimizado para desktops e dispositivos móveis.
@@ -50,6 +50,9 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
                 <select id="prefixoSelecionado">
                     <option value="NT">Prefixo NT</option>
                     <option value="MT">Prefixo MT</option>
+                    <option value="MTM">Prefixo MTM</option>
+                    <option value="MTI">Prefixo MTI</option>
+                    <option value="MTA">Prefixo MTA</option>
                 </select>
                 <button onclick="toggleTheme()" title="Alternar Modo Claro/Escuro">
                     <i id="theme-icon" class="fas fa-sun"></i>
@@ -65,6 +68,10 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
                 <button class="generate-btn" onclick="iniciarGeracaoTokens()">
                     <i class="fas fa-magic"></i> Gerar
                 </button>
+                <div class="loading-spinner" id="spinnerGerador"></div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBarGerador"></div>
+                </div>
                 <div class="cronometro" id="cronometroGerador"></div>
                 <pre id="tokensGerados"></pre>
                 <button class="generate-btn" onclick="exportarTokens('tokensGerados')">
@@ -76,6 +83,10 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
                 <button class="generate-btn" onclick="iniciarVerificacaoTokens()">
                     <i class="fas fa-check-double"></i> Verificar
                 </button>
+                <div class="loading-spinner" id="spinnerVerificador"></div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBarVerificador"></div>
+                </div>
                 <div class="cronometro" id="cronometroVerificador"></div>
                 <pre id="resultadoVerificacao"></pre>
             </div>
@@ -86,6 +97,12 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
             </div>
         </div>
     </div>
+
+    <!-- Footer Transparente -->
+    <footer class="footer">
+        <p>Desenvolvido com ❤️ por <a href="https://github.com/seuusuario" target="_blank">Lucas Dev</a></p>
+    </footer>
+
     <!-- Scripts Locais -->
     <script src="script.js"></script>
 </body>
