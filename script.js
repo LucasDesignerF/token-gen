@@ -46,29 +46,55 @@ function gerarToken(prefixo) {
 
 // Função para gerar múltiplos tokens
 function iniciarGeracaoTokens() {
+    const spinner = document.getElementById("spinnerGerador");
+    const progressBar = document.getElementById("progressBarGerador");
     const cronometroElemento = document.getElementById("cronometroGerador");
+
+    // Resetar elementos
+    spinner.style.display = "block";
+    progressBar.style.width = "0%";
+    cronometroElemento.textContent = "Tempo decorrido: 0s";
+
+    // Iniciar cronômetro
     cronometroGeradorInterval = iniciarCronometro(cronometroElemento);
 
-    const quantidade = document.getElementById("quantidade").value;
+    const quantidade = parseInt(document.getElementById("quantidade").value);
     const prefixo = document.getElementById("prefixoSelecionado").value;
     const tokens = [];
+    let progressoPorToken = 100 / quantidade;
+
     for (let i = 0; i < quantidade; i++) {
         tokens.push(gerarToken(prefixo));
+        // Atualizar barra de progresso
+        progressBar.style.width = `${(i + 1) * progressoPorToken}%`;
     }
+
     setTimeout(() => {
         document.getElementById("tokensGerados").textContent = tokens.join("\n");
+        spinner.style.display = "none";
         pararCronometro(cronometroGeradorInterval, cronometroElemento);
-    }, 1000); // Simula um pequeno delay para visualização do cronômetro
+    }, 1000); // Simula um pequeno delay para visualização do spinner e progresso
 }
 
 // Função para verificar tokens (simulação com API pública)
 async function iniciarVerificacaoTokens() {
+    const spinner = document.getElementById("spinnerVerificador");
+    const progressBar = document.getElementById("progressBarVerificador");
     const cronometroElemento = document.getElementById("cronometroVerificador");
+
+    // Resetar elementos
+    spinner.style.display = "block";
+    progressBar.style.width = "0%";
+    cronometroElemento.textContent = "Tempo decorrido: 0s";
+
+    // Iniciar cronômetro
     cronometroVerificadorInterval = iniciarCronometro(cronometroElemento);
 
     const tokens = document.getElementById("tokensGerados").textContent.split("\n");
     const resultados = [];
-    for (const token of tokens) {
+    let progressoPorToken = 100 / tokens.length;
+
+    for (const [index, token] of tokens.entries()) {
         if (!token) continue;
         try {
             const inicio = Date.now();
@@ -86,11 +112,15 @@ async function iniciarVerificacaoTokens() {
         } catch (erro) {
             resultados.push(`⚠️ Erro ao verificar token: ${token}`);
         }
+        // Atualizar barra de progresso
+        progressBar.style.width = `${(index + 1) * progressoPorToken}%`;
     }
+
     setTimeout(() => {
         document.getElementById("resultadoVerificacao").textContent = resultados.join("\n");
+        spinner.style.display = "none";
         pararCronometro(cronometroVerificadorInterval, cronometroElemento);
-    }, 1000); // Simula um pequeno delay para visualização do cronômetro
+    }, 1000); // Simula um pequeno delay para visualização do spinner e progresso
 }
 
 // Função para exportar tokens
