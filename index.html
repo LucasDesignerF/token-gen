@@ -38,6 +38,14 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo"><i class="fas fa-code"></i></div>
+        <h1>Code Projects - Nitro Gen 2025</h1>
+        <p>Gere e valide tokens com facilidade!</p>
+    </div>
+
+    <!-- Container Principal -->
     <div class="container animate__animated animate__fadeIn">
         <!-- Sidebar -->
         <div class="sidebar">
@@ -59,8 +67,10 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
                 </button>
             </div>
         </div>
+
         <!-- Main Content -->
         <div class="main">
+            <!-- Gerador de Tokens -->
             <div id="gerador" class="secao active">
                 <h2><i class="fas fa-cogs"></i> Gerador de Tokens</h2>
                 <label for="quantidade">Quantidade:</label>
@@ -78,6 +88,8 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
                     <i class="fas fa-download"></i> Exportar Tokens
                 </button>
             </div>
+
+            <!-- Verificador de Tokens -->
             <div id="verificador" class="secao" style="display: none;">
                 <h2><i class="fas fa-search"></i> Verificador de Tokens</h2>
                 <button class="generate-btn" onclick="iniciarVerificacaoTokens()">
@@ -90,10 +102,24 @@ O gerador de tokens mais moderno e eficiente da atualidade. Projetado para ser r
                 <div class="cronometro" id="cronometroVerificador"></div>
                 <pre id="resultadoVerificacao"></pre>
             </div>
+
+            <!-- Créditos -->
             <div id="creditos" class="secao" style="display: none;">
                 <h2><i class="fas fa-users"></i> Créditos</h2>
                 <p>Projeto criado por <strong>Code Projects</strong>.</p>
                 <p>Modificado por <strong>Lucas Dev</strong> para fins educacionais.</p>
+            </div>
+
+            <!-- Cards Dinâmicos -->
+            <div class="card tooltip" style="margin-top: 20px;">
+                <h3><i class="fas fa-info-circle"></i> Informações Importantes</h3>
+                <p>Use esta ferramenta apenas para fins educacionais.</p>
+                <span class="tooltiptext">Clique para saber mais!</span>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <h3><i class="fas fa-lightbulb"></i> Dica Rápida</h3>
+                <p>Aumente a quantidade de tokens para testes em massa.</p>
             </div>
         </div>
     </div>
