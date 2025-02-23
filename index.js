@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HB GEN - Token Generator</title>
+    <title>Code Projects - Nitro Gen 2025</title>
+    <!-- Metadados para Compartilhamento -->
+    <meta property="og:title" content="🎉 Code Projects - Gerador de Tokens 🎉">
+    <meta property="og:description" content="Gere tokens personalizados com prefixos NT ou MT. Verifique sua validade e explore funcionalidades modernas em um design inspirado no Discord.">
+    <meta property="og:image" content="https://storage.googleapis.com/replit/images/1648036232748_65f1ad4f3be1100e9167eced2a56f480.png">
+    <meta property="og:url" content="https://token-gen.pages.dev/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🎉 Code Projects - Gerador de Tokens 🎉">
+    <meta name="twitter:description" content="Gere tokens personalizados com prefixos NT ou MT. Verifique sua validade e explore funcionalidades modernas em um design inspirado no Discord.">
+    <meta name="twitter:image" content="https://storage.googleapis.com/replit/images/1648036232748_65f1ad4f3be1100e9167eced2a56f480.png">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/fluent/512/discord-nitro-badge.png">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Animate.css -->
@@ -11,8 +22,8 @@
     <style>
         /* Estilos Gerais */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #1e1e1e;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #36393f;
             color: #ffffff;
             margin: 0;
             padding: 0;
@@ -23,67 +34,108 @@
             overflow-x: hidden;
         }
         .container {
-            background-color: #2d2d2d;
-            padding: 20px;
+            background-color: #2f3136;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             width: 90%;
-            max-width: 600px;
-            text-align: center;
+            max-width: 800px;
+            display: grid;
+            grid-template-columns: 250px auto;
+            overflow: hidden;
             animation: fadeIn 1s ease-in-out;
         }
-        h1 {
-            color: #4caf50;
-            font-size: 2rem;
-            margin-bottom: 20px;
+        /* Sidebar */
+        .sidebar {
+            background-color: #202225;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid #292b2f;
         }
-        .menu button {
-            background-color: #4caf50;
+        .sidebar button {
+            background-color: #2f3136;
             color: white;
             border: none;
-            padding: 10px 20px;
-            margin: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
         }
-        .menu button:hover {
-            background-color: #45a049;
+        .sidebar button:hover {
+            background-color: #40444b;
         }
-        .secao {
-            margin-top: 20px;
-            display: none;
+        .sidebar button.active {
+            background-color: #7289da; /* Cor do Discord */
+            color: white;
         }
-        .secao.active {
-            display: block;
-            animation: slideIn 0.5s ease-in-out;
+        /* Main Content */
+        .main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        h2 {
+            color: #7289da; /* Cor do Discord */
+            margin-bottom: 20px;
         }
         label {
             display: block;
             margin: 10px 0 5px;
         }
-        input {
+        input, select {
             padding: 10px;
             border-radius: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid #40444b;
+            background-color: #2f3136;
+            color: white;
             width: 100%;
             max-width: 200px;
             margin-bottom: 10px;
         }
+        button.generate-btn {
+            background-color: #7289da; /* Cor do Discord */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button.generate-btn:hover {
+            background-color: #677bc4; /* Cor do Discord (hover) */
+        }
         pre {
-            background-color: #1e1e1e;
+            background-color: #202225;
             padding: 10px;
             border-radius: 5px;
-            overflow-x: auto;
+            overflow-y: auto;
             text-align: left;
             font-size: 0.9rem;
+            color: #ffffff;
+            max-height: 250px; /* Altura fixa */
+            margin-top: 10px;
+            border: 1px solid #40444b;
         }
         /* Responsividade */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.5rem;
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
             }
-            .menu button {
+            .sidebar {
+                flex-direction: row;
+                justify-content: space-around;
+                border-right: none;
+                border-bottom: 1px solid #292b2f;
+                padding: 10px;
+            }
+            .sidebar button {
                 padding: 8px 15px;
                 font-size: 0.9rem;
             }
@@ -97,51 +149,50 @@
                 opacity: 1;
             }
         }
-        @keyframes slideIn {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container animate__animated animate__fadeIn">
-        <h1><i class="fas fa-key"></i> HB GEN - Token Generator</h1>
-        <div class="menu">
-            <button onclick="mostrarGerador()"><i class="fas fa-plus"></i> Gerar Tokens</button>
-            <button onclick="mostrarVerificador()"><i class="fas fa-check"></i> Verificar Tokens</button>
-            <button onclick="mostrarCreditos()"><i class="fas fa-info-circle"></i> Créditos</button>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div>
+                <button onclick="mostrarGerador()" class="active"><i class="fas fa-plus"></i> Gerar Tokens</button>
+                <button onclick="mostrarVerificador()"><i class="fas fa-check"></i> Verificar Tokens</button>
+                <button onclick="mostrarCreditos()"><i class="fas fa-info-circle"></i> Créditos</button>
+            </div>
+            <select id="prefixoSelecionado">
+                <option value="NT">Prefixo NT</option>
+                <option value="MT">Prefixo MT</option>
+            </select>
         </div>
-        <div id="gerador" class="secao active">
-            <h2><i class="fas fa-cogs"></i> Gerador de Tokens</h2>
-            <label for="quantidade">Quantidade:</label>
-            <input type="number" id="quantidade" min="1" value="10">
-            <button onclick="gerarTokens()"><i class="fas fa-magic"></i> Gerar</button>
-            <pre id="tokensGerados"></pre>
-        </div>
-        <div id="verificador" class="secao">
-            <h2><i class="fas fa-search"></i> Verificador de Tokens</h2>
-            <button onclick="verificarTokens()"><i class="fas fa-check-double"></i> Verificar</button>
-            <pre id="resultadoVerificacao"></pre>
-        </div>
-        <div id="creditos" class="secao">
-            <h2><i class="fas fa-users"></i> Créditos</h2>
-            <p>Projeto criado por <strong>HIRDAY AND TANMAY</strong>.</p>
-            <p>Modificado por <strong>Você</strong> para fins educacionais.</p>
+        <!-- Main Content -->
+        <div class="main">
+            <div id="gerador" class="secao active">
+                <h2><i class="fas fa-cogs"></i> Gerador de Tokens</h2>
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" min="1" value="10">
+                <button class="generate-btn" onclick="gerarTokens()"><i class="fas fa-magic"></i> Gerar</button>
+                <pre id="tokensGerados"></pre>
+            </div>
+            <div id="verificador" class="secao">
+                <h2><i class="fas fa-search"></i> Verificador de Tokens</h2>
+                <button class="generate-btn" onclick="verificarTokens()"><i class="fas fa-check-double"></i> Verificar</button>
+                <pre id="resultadoVerificacao"></pre>
+            </div>
+            <div id="creditos" class="secao">
+                <h2><i class="fas fa-users"></i> Créditos</h2>
+                <p>Projeto criado por <strong>HIRDAY AND TANMAY</strong>.</p>
+                <p>Modificado por <strong>Você</strong> para fins educacionais.</p>
+            </div>
         </div>
     </div>
     <script>
         // Função para gerar um token aleatório
-        function gerarToken() {
+        function gerarToken(prefixo) {
             const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
             const numeros = "0123456789";
             const todosCaracteres = letras + numeros;
-            const parte1 = "NT" + letras[Math.floor(Math.random() * letras.length)];
+            const parte1 = prefixo + letras[Math.floor(Math.random() * letras.length)];
             const parte2 = Array.from({ length: 21 }, () => todosCaracteres[Math.floor(Math.random() * todosCaracteres.length)]).join("");
             const parte3 = letras[Math.floor(Math.random() * letras.length)].toUpperCase();
             const parte4 = Array.from({ length: 5 }, () => todosCaracteres[Math.floor(Math.random() * todosCaracteres.length)]).join("");
@@ -152,9 +203,10 @@
         // Função para gerar múltiplos tokens
         function gerarTokens() {
             const quantidade = document.getElementById("quantidade").value;
+            const prefixo = document.getElementById("prefixoSelecionado").value;
             const tokens = [];
             for (let i = 0; i < quantidade; i++) {
-                tokens.push(gerarToken());
+                tokens.push(gerarToken(prefixo));
             }
             document.getElementById("tokensGerados").textContent = tokens.join("\n");
         }
@@ -201,6 +253,11 @@
             });
             document.getElementById(secaoId).classList.add("active");
             document.getElementById(secaoId).style.display = "block";
+
+            // Atualizar botões da sidebar
+            document.querySelectorAll(".sidebar button").forEach(button => button.classList.remove("active"));
+            const botaoAtivo = document.querySelector(`.sidebar button[onclick*='${secaoId}']`);
+            if (botaoAtivo) botaoAtivo.classList.add("active");
         }
     </script>
 </body>
