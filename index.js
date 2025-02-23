@@ -6,12 +6,42 @@
     <title>Code Projects - Nitro Gen 2025</title>
     <!-- Metadados para Compartilhamento -->
     <meta property="og:title" content="🎉 Code Projects - Gerador de Tokens 🎉">
-    <meta property="og:description" content="Gere tokens personalizados com prefixos NT ou MT. Verifique sua validade e explore funcionalidades modernas em um design inspirado no Discord.">
+    <meta property="og:description" content="
+    🚀 Bem-vindo ao Code Projects - Nitro Gen 2025! 🚀
+    
+    Este é um gerador de tokens personalizados com prefixos NT ou MT, projetado para ser rápido, seguro e fácil de usar. Com um design moderno inspirado no Discord, esta ferramenta oferece uma experiência única para desenvolvedores, criadores de conteúdo e entusiastas.
+    
+    ✨ Principais Funcionalidades:
+    - Gere até 100 tokens simultaneamente.
+    - Escolha entre prefixos NT ou MT para personalização.
+    - Verifique a validade dos tokens gerados em tempo real.
+    - Interface intuitiva e responsiva para desktops e dispositivos móveis.
+    - Design moderno e estilizado com cores do Discord.
+    
+    💡 Este projeto foi criado por HIRDAY AND TANMAY e modificado por **Lucas DEV** para fins educacionais. Explore as funcionalidades e aproveite ao máximo esta ferramenta!
+    
+    🔗 Acesse agora: https://token-gen.pages.dev/
+    ">
     <meta property="og:image" content="https://storage.googleapis.com/replit/images/1648036232748_65f1ad4f3be1100e9167eced2a56f480.png">
     <meta property="og:url" content="https://token-gen.pages.dev/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="🎉 Code Projects - Gerador de Tokens 🎉">
-    <meta name="twitter:description" content="Gere tokens personalizados com prefixos NT ou MT. Verifique sua validade e explore funcionalidades modernas em um design inspirado no Discord.">
+    <meta property="og:description" content="
+🚀 Bem-vindo ao Code Projects - Nitro Gen 2025! 🚀
+
+Este é um gerador de tokens personalizados com prefixos NT ou MT, projetado para ser rápido, seguro e fácil de usar. Com um design moderno inspirado no Discord, esta ferramenta oferece uma experiência única para desenvolvedores, criadores de conteúdo e entusiastas.
+
+✨ Principais Funcionalidades:
+- Gere até 100 tokens simultaneamente.
+- Escolha entre prefixos NT ou MT para personalização.
+- Verifique a validade dos tokens gerados em tempo real.
+- Interface intuitiva e responsiva para desktops e dispositivos móveis.
+- Design moderno e estilizado com cores do Discord.
+
+💡 Este projeto foi criado por HIRDAY AND TANMAY e modificado por **Lucas DEV** para fins educacionais. Explore as funcionalidades e aproveite ao máximo esta ferramenta!
+
+🔗 Acesse agora: https://token-gen.pages.dev/
+">
     <meta name="twitter:image" content="https://storage.googleapis.com/replit/images/1648036232748_65f1ad4f3be1100e9167eced2a56f480.png">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://img.icons8.com/fluent/512/discord-nitro-badge.png">
